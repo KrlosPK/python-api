@@ -33,10 +33,10 @@ def getDB():
 @router.post(
     "/dragones", response_model=DragonDTOResponse, summary="Crea un Dragon en la BD"
 )
-def addDragon(dragon: DragonDTORequest, db: Session = Depends(getDB())):
+def addDragon(dragon: DragonDTORequest, db: Session = Depends(getDB)):
     try:
         dragon = Dragon(
-            nombres=dragon.nombre,
+            nombre=dragon.nombre,
             edad=dragon.edad,
             altura=dragon.altura,
             numeroVictorias=dragon.numeroVictorias,
@@ -97,10 +97,10 @@ def deleteDragon(id: int, db: Session = Depends(getDB)):
 @router.post(
     "/jinetes", response_model=JineteDTOResponse, summary="Crea un Jinete en la BD"
 )
-def addJinete(jinete: JineteDTORequest, db: Session = Depends(getDB())):
+def addJinete(jinete: JineteDTORequest, db: Session = Depends(getDB)):
     try:
         jinete = Jinete(
-            nombres=jinete.nombre,
+            nombre=jinete.nombre,
             edad=jinete.edad,
             altura=jinete.altura,
             numeroVictorias=jinete.numeroVictorias,
@@ -161,10 +161,10 @@ def deleteJinete(id: int, db: Session = Depends(getDB)):
 @router.post(
     "/aliados", response_model=AliadoDTOResponse, summary="Crea un Aliado en la BD"
 )
-def addAliado(aliado: AliadoDTORequest, db: Session = Depends(getDB())):
+def addAliado(aliado: AliadoDTORequest, db: Session = Depends(getDB)):
     try:
         aliado = Aliado(
-            nombres=aliado.nombre,
+            nombre=aliado.nombre,
             edad=aliado.edad,
             altura=aliado.altura,
             numeroVictorias=aliado.numeroVictorias,
