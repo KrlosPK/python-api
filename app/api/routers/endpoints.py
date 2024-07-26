@@ -31,7 +31,9 @@ def getDB():
 
 
 @router.post(
-    "/dragones", response_model=DragonDTOResponse, summary="Crea un Dragon en la BD"
+    "/api/v1/dragones",
+    response_model=DragonDTOResponse,
+    summary="Crea un Dragon en la BD",
 )
 def addDragon(dragon: DragonDTORequest, db: Session = Depends(getDB)):
     try:
@@ -51,7 +53,7 @@ def addDragon(dragon: DragonDTORequest, db: Session = Depends(getDB)):
 
 
 @router.get(
-    "/dragones",
+    "/api/v1/dragones",
     response_model=List[DragonDTOResponse],
     summary="Servicio que lista todos los dragones de la BD",
 )
@@ -63,7 +65,7 @@ def getDragones(db: Session = Depends(getDB)):
 
 
 @router.get(
-    "/dragones/{id}",
+    "/api/v1/dragones/{id}",
     response_model=DragonDTOResponse,
     summary="Obtiene un Dragon por su ID",
 )
@@ -74,7 +76,7 @@ def getDragonById(id: int, db: Session = Depends(getDB)):
         raise HTTPException(status_code=500, detail=error)
 
 
-@router.put("/dragones/{id}")
+@router.put("/api/v1/dragones/{id}")
 def updateDragon(id: int, dragon: DragonDTORequest, db: Session = Depends(getDB)):
     dragonToUpdate = getDragonById(id, db)
     if dragonToUpdate is None:
@@ -85,7 +87,7 @@ def updateDragon(id: int, dragon: DragonDTORequest, db: Session = Depends(getDB)
     db.refresh(dragonToUpdate)
 
 
-@router.delete("/dragones/{id}")
+@router.delete("/api/v1/dragones/{id}")
 def deleteDragon(id: int, db: Session = Depends(getDB)):
     dragonToDelete = getDragonById(id, db)
     if dragonToDelete is None:
@@ -95,7 +97,9 @@ def deleteDragon(id: int, db: Session = Depends(getDB)):
 
 
 @router.post(
-    "/jinetes", response_model=JineteDTOResponse, summary="Crea un Jinete en la BD"
+    "/api/v1/jinetes",
+    response_model=JineteDTOResponse,
+    summary="Crea un Jinete en la BD",
 )
 def addJinete(jinete: JineteDTORequest, db: Session = Depends(getDB)):
     try:
@@ -115,7 +119,7 @@ def addJinete(jinete: JineteDTORequest, db: Session = Depends(getDB)):
 
 
 @router.get(
-    "/jinetes",
+    "/api/v1/jinetes",
     response_model=List[JineteDTOResponse],
     summary="Servicio que lista todos los jinetes de la BD",
 )
@@ -127,7 +131,7 @@ def getJinetes(db: Session = Depends(getDB)):
 
 
 @router.get(
-    "/jinetes/{id}",
+    "/api/v1/jinetes/{id}",
     response_model=JineteDTOResponse,
     summary="Obtiene un Jinete por su ID",
 )
@@ -138,7 +142,7 @@ def getJineteById(id: int, db: Session = Depends(getDB)):
         raise HTTPException(status_code=500, detail=error)
 
 
-@router.put("/jinetes/{id}")
+@router.put("/api/v1/jinetes/{id}")
 def updateJinete(id: int, jinete: JineteDTORequest, db: Session = Depends(getDB)):
     jineteToUpdate = getJineteById(id, db)
     if jineteToUpdate is None:
@@ -149,7 +153,7 @@ def updateJinete(id: int, jinete: JineteDTORequest, db: Session = Depends(getDB)
     db.refresh(jineteToUpdate)
 
 
-@router.delete("/jinetes/{id}")
+@router.delete("/api/v1/jinetes/{id}")
 def deleteJinete(id: int, db: Session = Depends(getDB)):
     jineteToDelete = getJineteById(id, db)
     if jineteToDelete is None:
@@ -159,7 +163,9 @@ def deleteJinete(id: int, db: Session = Depends(getDB)):
 
 
 @router.post(
-    "/aliados", response_model=AliadoDTOResponse, summary="Crea un Aliado en la BD"
+    "/api/v1/aliados",
+    response_model=AliadoDTOResponse,
+    summary="Crea un Aliado en la BD",
 )
 def addAliado(aliado: AliadoDTORequest, db: Session = Depends(getDB)):
     try:
@@ -179,7 +185,7 @@ def addAliado(aliado: AliadoDTORequest, db: Session = Depends(getDB)):
 
 
 @router.get(
-    "/aliados",
+    "/api/v1/aliados",
     response_model=List[AliadoDTOResponse],
     summary="Servicio que lista todos los aliados de la BD",
 )
@@ -191,7 +197,7 @@ def getAliados(db: Session = Depends(getDB)):
 
 
 @router.get(
-    "/aliados/{id}",
+    "/api/v1/aliados/{id}",
     response_model=AliadoDTOResponse,
     summary="Obtiene un Aliado por su ID",
 )
@@ -202,7 +208,7 @@ def getAliadoById(id: int, db: Session = Depends(getDB)):
         raise HTTPException(status_code=500, detail=error)
 
 
-@router.put("/aliados/{id}")
+@router.put("/api/v1/aliados/{id}")
 def updateAliado(id: int, aliado: AliadoDTORequest, db: Session = Depends(getDB)):
     aliadoToUpdate = getAliadoById(id, db)
     if aliadoToUpdate is None:
@@ -213,7 +219,7 @@ def updateAliado(id: int, aliado: AliadoDTORequest, db: Session = Depends(getDB)
     db.refresh(aliadoToUpdate)
 
 
-@router.delete("/aliados/{id}")
+@router.delete("/api/v1/aliados/{id}")
 def deleteAliado(id: int, db: Session = Depends(getDB)):
     aliadoToDelete = getAliadoById(id, db)
     if aliadoToDelete is None:
