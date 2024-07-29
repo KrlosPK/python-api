@@ -36,6 +36,11 @@ def getDB():
     summary="Crea un Dragon en la BD",
 )
 def addDragon(dragon: DragonDTORequest, db: Session = Depends(getDB)):
+    jinete = db.query(Jinete).filter(Jinete.id == dragon.fk_jinete).first()
+
+    if not jinete:
+        raise HTTPException(status_code=404, detail="Jinete not found")
+
     try:
         dragon = Dragon(
             nombre=dragon.nombre,
@@ -95,6 +100,8 @@ def deleteDragon(id: int, db: Session = Depends(getDB)):
         raise HTTPException(status_code=404, detail="Dragon not found")
     db.delete(dragonToDelete)
     db.commit()
+
+    return {"message": "Dragon deleted successfully"}
 
 
 @router.post(
@@ -161,6 +168,8 @@ def deleteJinete(id: int, db: Session = Depends(getDB)):
     db.delete(jineteToDelete)
     db.commit()
 
+    return {"message": "Jinete deleted successfully"}
+
 
 @router.post(
     "/api/v1/aliados",
@@ -168,6 +177,11 @@ def deleteJinete(id: int, db: Session = Depends(getDB)):
     summary="Crea un Aliado en la BD",
 )
 def addAliado(aliado: AliadoDTORequest, db: Session = Depends(getDB)):
+    jinete = db.query(Jinete).filter(Jinete.id == aliado.fk_jinete).first()
+
+    if not jinete:
+        raise HTTPException(status_code=404, detail="Jinete not found")
+
     try:
         aliado = Aliado(
             nombre=aliado.nombre,
@@ -226,3 +240,5 @@ def deleteAliado(id: int, db: Session = Depends(getDB)):
         raise HTTPException(status_code=404, detail="Aliado not found")
     db.delete(aliadoToDelete)
     db.commit()
+
+    return {"message": "Aliado deleted succesfully"}
