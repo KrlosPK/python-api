@@ -42,6 +42,7 @@ def addDragon(dragon: DragonDTORequest, db: Session = Depends(getDB)):
             edad=dragon.edad,
             altura=dragon.altura,
             numeroVictorias=dragon.numeroVictorias,
+            fk_jinete=dragon.fk_jinete,
         )
         db.add(dragon)
         db.commit()
@@ -106,8 +107,7 @@ def addJinete(jinete: JineteDTORequest, db: Session = Depends(getDB)):
         jinete = Jinete(
             nombre=jinete.nombre,
             edad=jinete.edad,
-            altura=jinete.altura,
-            numeroVictorias=jinete.numeroVictorias,
+            fechaMontura=jinete.fechaMontura,
         )
         db.add(jinete)
         db.commit()
@@ -171,9 +171,9 @@ def addAliado(aliado: AliadoDTORequest, db: Session = Depends(getDB)):
     try:
         aliado = Aliado(
             nombre=aliado.nombre,
-            edad=aliado.edad,
-            altura=aliado.altura,
-            numeroVictorias=aliado.numeroVictorias,
+            ubicacion=aliado.ubicacion,
+            aporteMonetario=aliado.aporteMonetario,
+            fk_jinete=aliado.fk_jinete,
         )
         db.add(aliado)
         db.commit()
