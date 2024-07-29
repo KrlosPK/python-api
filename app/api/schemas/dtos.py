@@ -6,6 +6,7 @@ class AliadoDTORequest(BaseModel):
     nombre: str
     ubicacion: str
     aporteMonetario: float
+    fk_jinete: int
 
     class Config:
         orm_mode = True
@@ -16,6 +17,7 @@ class AliadoDTOResponse(BaseModel):
     nombre: str
     ubicacion: str
     aporteMonetario: float
+    fk_jinete: int
 
     class Config:
         orm_mode = True
@@ -26,6 +28,7 @@ class DragonDTORequest(BaseModel):
     edad: int
     altura: float
     numeroVictorias: int
+    fk_jinete: int
 
     class Config:
         orm_mode = True
@@ -37,6 +40,7 @@ class DragonDTOResponse(BaseModel):
     edad: int
     altura: float
     numeroVictorias: int
+    fk_jinete: int
 
     class Config:
         orm_mode = True
@@ -44,7 +48,7 @@ class DragonDTOResponse(BaseModel):
 
 class JineteDTORequest(BaseModel):
     nombre: str
-    edad: str
+    edad: int
     fechaMontura: date
 
     class Config:
@@ -54,7 +58,7 @@ class JineteDTORequest(BaseModel):
 class JineteDTOResponse(BaseModel):
     id: int
     nombre: str
-    edad: str
+    edad: int
     fechaMontura: date
 
     class Config:
